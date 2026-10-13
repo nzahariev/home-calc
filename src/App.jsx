@@ -26,7 +26,8 @@ import {
   Check,
   Info,
   ArrowRight,
-  Shield
+  Shield,
+  HardHat
 } from 'lucide-react';
 import { 
   PieChart, 
@@ -153,11 +154,72 @@ const MASTER_CATEGORIES_DATA = [
   }
 ];
 
+const BDS_CATEGORIES_DATA = [
+  {
+    id: 'bds1',
+    code: '01',
+    name: 'Институции, Надзор & Документи',
+    subtitle: 'Строителен надзор, техн. паспорт, геодезист, партиди, общински такси за Акт 16',
+    color: '#6366f1',
+    icon: Building,
+    items: [
+      { id: 'b1_1', name: 'Лицензиран строителен надзор (договор, Акт 15 & Доклад за Акт 16)', unit: 'услуга', qty: 1, matPrice: 0, laborPrice: 1500, note: 'Задължително лицензирана фирма' },
+      { id: 'b1_2', name: 'Технически паспорт & Енергийна ефективност (одит)', unit: 'услуга', qty: 1, matPrice: 0, laborPrice: 800, note: 'Задължителен независим одитор' },
+      { id: 'b1_3', name: 'Геодезическо заснемане и нанасяне в Кадастъра (АГКК)', unit: 'услуга', qty: 1, matPrice: 0, laborPrice: 500, note: 'Инженер-геодезист' },
+      { id: 'b1_4', name: 'Такси ВиК Варна & Енерго-Про (паркиране, табла, окончателни партиди)', unit: 'услуга', qty: 1, matPrice: 600, laborPrice: 800, note: 'Държавни и монополни такси' },
+      { id: 'b1_5', name: 'Общински такси за Разрешение за ползване (Акт 16)', unit: 'услуга', qty: 1, matPrice: 0, laborPrice: 400, note: 'Община Аксаково / Варна' },
+    ]
+  },
+  {
+    id: 'bds2',
+    code: '02',
+    name: 'Фасада & Основни Външни Работи',
+    subtitle: 'Топлоизолация EPS 10cm, силикатна мазилка, скеле, външна врата, базови пътеки & ограда',
+    color: '#0ea5e9',
+    icon: Home,
+    items: [
+      { id: 'b2_1', name: 'Топлоизолация фасада (EPS 10cm EPS-F, лепила, мрежа, армировка)', unit: 'кв.м', qty: 210, matPrice: 18, laborPrice: 14, note: 'Фасадна система' },
+      { id: 'b2_2', name: 'Силикатна/Силиконова драскана мазилка', unit: 'кв.м', qty: 210, matPrice: 10, laborPrice: 8, note: 'Финишно фасадно покритие' },
+      { id: 'b2_3', name: 'Наем и монтаж/демонтаж на фасадно скеле', unit: 'кв.м', qty: 210, matPrice: 3, laborPrice: 3, note: 'За 30 дни наем' },
+      { id: 'b2_4', name: 'Външна блиндирана врата с висок клас заключване', unit: 'бр.', qty: 1, matPrice: 1400, laborPrice: 200, note: 'Устойчива на външни условия' },
+      { id: 'b2_5', name: 'Бетонов цокъл за ограда & ажурни оградни пана (базови)', unit: 'л.м.', qty: 60, matPrice: 25, laborPrice: 20, note: 'Ограда на двора (566 кв.м)' },
+      { id: 'b2_6', name: 'Базови тротоарни плочи & подравняване около входа', unit: 'кв.м', qty: 40, matPrice: 15, laborPrice: 12, note: 'Само входни пътеки' },
+    ]
+  },
+  {
+    id: 'bds3',
+    code: '03',
+    name: 'Инсталации — Ел. & ВиК (до извод)',
+    subtitle: 'Окабеляване, табло, тръбни трасета ВиК — само до тапа/конзола, без санитария',
+    color: '#14b8a6',
+    icon: Zap,
+    items: [
+      { id: 'b3_1', name: 'Ел. окабеляване (СВТ/ПВВ-МБ1 тръби, конзолни кутии, точково)', unit: 'точки', qty: 110, matPrice: 8, laborPrice: 10, note: 'Пълно вътрешно трасе до тапа' },
+      { id: 'b3_2', name: 'Главно ел. табло + дефектнотокови автоматични предпазители Schneider/Legrand', unit: 'комплект', qty: 1, matPrice: 450, laborPrice: 250, note: 'Защита и автоматика' },
+      { id: 'b3_3', name: 'ВиК тръбопровод (PPR топла/студена + PVC канализация до извод)', unit: 'точки', qty: 22, matPrice: 25, laborPrice: 35, note: 'До тапа — без смесители/санитария' },
+    ]
+  },
+  {
+    id: 'bds4',
+    code: '04',
+    name: 'Подове & Стени (БДС)',
+    subtitle: 'Машинна замазка, машинна мазилка, фино шпакловане — без боядисване и настилки',
+    color: '#f59e0b',
+    icon: Wrench,
+    items: [
+      { id: 'b4_1', name: 'Машинна подова циментова замазка (армирана с фибри 5-6cm)', unit: 'кв.м', qty: 157, matPrice: 7, laborPrice: 8, note: 'Подготовка за бъдеща настилка' },
+      { id: 'b4_2', name: 'Машинна варово-циментова / гипсова мазилка за стени и тавани', unit: 'кв.м', qty: 420, matPrice: 5, laborPrice: 7, note: 'Основно изравняване' },
+      { id: 'b4_3', name: 'Фино шпакловане (2 ръце + заглаждаща)', unit: 'кв.м', qty: 420, matPrice: 3, laborPrice: 6, note: 'Готово за бъдеща боя — без боядисване' },
+    ]
+  },
+];
+
 export default function App() {
   // Theme & Mode State
   const [isDiyMode, setIsDiyMode] = useState(false);
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'breakdown' | 'credit'
+  const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'breakdown' | 'credit' | 'bds'
   const [expandedCategories, setExpandedCategories] = useState({ cat1: true, cat2: true });
+  const [expandedBdsCategories, setExpandedBdsCategories] = useState({ bds1: true });
 
   // Customizable Dynamic Inputs
   const [houseArea, setHouseArea] = useState(157.23);
@@ -186,6 +248,33 @@ export default function App() {
   const collapseAll = () => {
     setExpandedCategories({});
   };
+
+  const toggleBdsCategory = (catId) => {
+    setExpandedBdsCategories(prev => ({ ...prev, [catId]: !prev[catId] }));
+  };
+
+  const bdsComputedData = useMemo(() => {
+    let totalMat = 0;
+    let totalLabor = 0;
+    const categories = BDS_CATEGORIES_DATA.map(cat => {
+      let catMat = 0;
+      let catLabor = 0;
+      const items = cat.items.map(item => {
+        const matCost = item.matPrice * item.qty;
+        const laborCost = item.laborPrice * item.qty;
+        catMat += matCost;
+        catLabor += laborCost;
+        return { ...item, matCost, laborCost, totalCost: matCost + laborCost };
+      });
+      totalMat += catMat;
+      totalLabor += catLabor;
+      return { ...cat, items, catMat, catLabor, catTotal: catMat + catLabor };
+    });
+    const subtotal = totalMat + totalLabor;
+    const buffer = subtotal * 0.08;
+    const total = subtotal + buffer;
+    return { categories, totalMat, totalLabor, subtotal, buffer, total };
+  }, []);
 
   const computedData = useMemo(() => {
     let grandTotalMaterials = 0;
@@ -450,6 +539,17 @@ export default function App() {
           >
             <CreditCard className="w-4 h-4" />
             Кредитна Структура & Вноски
+          </button>
+          <button
+            onClick={() => setActiveTab('bds')}
+            className={`flex items-center gap-2 pb-3.5 px-1 font-semibold text-sm border-b-2 transition-all whitespace-nowrap ${
+              activeTab === 'bds'
+                ? 'border-amber-500 text-amber-400'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <HardHat className="w-4 h-4" />
+            Завършване по БДС (Минимум)
           </button>
         </div>
 
@@ -853,6 +953,180 @@ export default function App() {
               </div>
               <p className="text-xs text-slate-300/80 max-w-xl mx-auto mt-2">
                 Общата сума за обслужване на двата кредита при {interestRate}% годишна лихва за {loanYears} години.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 4: BDS MINIMUM COMPLETION */}
+        {activeTab === 'bds' && (
+          <div className="space-y-6">
+            {/* Hero summary */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 backdrop-blur-xl">
+                <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1 flex justify-between">
+                  <span>Имот (Акт 14)</span>
+                  <Building className="w-4 h-4 text-indigo-400" />
+                </div>
+                <div className="text-2xl font-black text-white">{formatEuro(purchasePrice)}</div>
+                <div className="text-[11px] text-slate-400 mt-2">Базова цена на имота</div>
+              </div>
+
+              <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 backdrop-blur-xl">
+                <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1 flex justify-between">
+                  <span>Първоначални такси</span>
+                  <Percent className="w-4 h-4 text-amber-400" />
+                </div>
+                <div className="text-2xl font-black text-amber-400">{formatEuro(upfrontCosts)}</div>
+                <div className="text-[11px] text-slate-400 mt-2">10% самоучастие + 2% брокер + ~5% нотариус</div>
+              </div>
+
+              <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 backdrop-blur-xl">
+                <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1 flex justify-between">
+                  <span>БДС + 8% резерв</span>
+                  <Wrench className="w-4 h-4 text-amber-400" />
+                </div>
+                <div className="text-2xl font-black text-amber-400">{formatEuro(bdsComputedData.total)}</div>
+                <div className="text-[11px] text-slate-400 mt-2">
+                  Вкл. буфер <strong className="text-slate-200">{formatEuro(bdsComputedData.buffer)}</strong>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-amber-950/60 to-orange-950/60 border border-amber-500/30 rounded-2xl p-5 backdrop-blur-xl">
+                <div className="text-xs font-semibold text-amber-300 uppercase tracking-wider mb-1 flex justify-between">
+                  <span>Общо до БДС + Акт 16</span>
+                  <HardHat className="w-4 h-4 text-amber-400" />
+                </div>
+                <div className="text-2xl font-black text-white">{formatEuro(purchasePrice + upfrontCosts + bdsComputedData.total)}</div>
+                <div className="text-[11px] text-amber-200/80 mt-2">Акт 16 в ръка, готово за довършване</div>
+              </div>
+            </div>
+
+            {/* What's NOT included banner */}
+            <div className="bg-slate-900/60 border border-slate-700 rounded-2xl p-5 backdrop-blur-xl">
+              <h3 className="text-sm font-bold text-slate-200 mb-3 flex items-center gap-2">
+                <Info className="w-4 h-4 text-amber-400" />
+                Какво НЕ е включено в БДС (ще се добавя след това)
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-slate-400">
+                {[
+                  'Бани & мокри помещения (плочки, санитария, фаянс)',
+                  'Подови настилки (ламинат, гранитогрес)',
+                  'Интериорни врати',
+                  'Боядисване на стени и тавани',
+                  'Климатици / отопителни тела',
+                  'Мебели, кухня & уреди',
+                ].map(item => (
+                  <div key={item} className="flex items-start gap-2 p-2 rounded-lg bg-slate-800/40">
+                    <span className="text-rose-400 mt-0.5">✕</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Accordion breakdown */}
+            <div className="flex justify-between items-center bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+              <div>
+                <h3 className="text-base font-bold text-white">Подробна разбивка — само БДС</h3>
+                <p className="text-xs text-slate-400">4 раздела · до Акт 16 · 157.23 кв.м</p>
+              </div>
+              <div className="text-right">
+                <div className="text-xs text-slate-400">Подобект + труд (без буфер)</div>
+                <div className="text-lg font-black text-amber-400">{formatEuro(bdsComputedData.subtotal)}</div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {bdsComputedData.categories.map((cat) => {
+                const IconComp = cat.icon;
+                const isExpanded = !!expandedBdsCategories[cat.id];
+                return (
+                  <div key={cat.id} className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden">
+                    <div
+                      onClick={() => toggleBdsCategory(cat.id)}
+                      className="p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 cursor-pointer hover:bg-slate-800/40 transition select-none"
+                    >
+                      <div className="flex items-center gap-3.5">
+                        <div className="p-3 rounded-xl flex-shrink-0" style={{ backgroundColor: `${cat.color}20`, color: cat.color }}>
+                          <IconComp className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-black text-slate-400 tracking-wider">РАЗДЕЛ {cat.code}</div>
+                          <h4 className="text-base font-bold text-white mt-0.5">{cat.name}</h4>
+                          <p className="text-xs text-slate-400 mt-0.5">{cat.subtitle}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between w-full md:w-auto gap-6 pt-3 md:pt-0 border-t md:border-t-0 border-slate-800">
+                        <div className="text-left md:text-right">
+                          <div className="text-[11px] text-slate-400">Общо Раздел</div>
+                          <div className="text-lg font-black text-white">{formatEuro(cat.catTotal)}</div>
+                        </div>
+                        <div className="p-2 text-slate-400">
+                          {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                        </div>
+                      </div>
+                    </div>
+
+                    {isExpanded && (
+                      <div className="border-t border-slate-800/80 overflow-x-auto">
+                        <table className="w-full text-left border-collapse min-w-[600px]">
+                          <thead>
+                            <tr className="bg-slate-950/80 text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                              <th className="py-3 px-4">Дейност / Материал</th>
+                              <th className="py-3 px-3 text-center">Мярка</th>
+                              <th className="py-3 px-3 text-center">Кол.</th>
+                              <th className="py-3 px-3 text-right">Мат. (€)</th>
+                              <th className="py-3 px-3 text-right">Труд (€)</th>
+                              <th className="py-3 px-4 text-right">Общо (€)</th>
+                              <th className="py-3 px-4">Бележки</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-slate-800/50 text-xs">
+                            {cat.items.map(item => (
+                              <tr key={item.id} className="hover:bg-slate-800/30 transition">
+                                <td className="py-3.5 px-4 font-semibold text-slate-200">{item.name}</td>
+                                <td className="py-3.5 px-3 text-center text-slate-400">{item.unit}</td>
+                                <td className="py-3.5 px-3 text-center font-bold text-white">{item.qty}</td>
+                                <td className="py-3.5 px-3 text-right text-sky-400 font-medium">{formatEuro(item.matCost)}</td>
+                                <td className="py-3.5 px-3 text-right text-rose-400 font-medium">{formatEuro(item.laborCost)}</td>
+                                <td className="py-3.5 px-4 text-right font-black text-white">{formatEuro(item.totalCost)}</td>
+                                <td className="py-3.5 px-4 text-slate-400 text-[11px]">{item.note}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Final summary box */}
+            <div className="bg-gradient-to-r from-amber-900/60 via-orange-900/60 to-slate-900 border border-amber-500/40 rounded-2xl p-8 text-center shadow-2xl backdrop-blur-xl">
+              <div className="text-xs font-bold text-amber-300 uppercase tracking-widest mb-3">
+                Минимална инвестиция — Акт 16 в ръка
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm mb-6">
+                <div className="bg-slate-900/60 rounded-xl p-4 border border-slate-800">
+                  <div className="text-slate-400 text-xs mb-1">Имот (Акт 14)</div>
+                  <div className="font-black text-white text-lg">{formatEuro(purchasePrice)}</div>
+                </div>
+                <div className="bg-slate-900/60 rounded-xl p-4 border border-slate-800">
+                  <div className="text-slate-400 text-xs mb-1">Такси (нотариус, брокер, самоуч.)</div>
+                  <div className="font-black text-amber-400 text-lg">{formatEuro(upfrontCosts)}</div>
+                </div>
+                <div className="bg-slate-900/60 rounded-xl p-4 border border-slate-800">
+                  <div className="text-slate-400 text-xs mb-1">Довършване до БДС + резерв 8%</div>
+                  <div className="font-black text-amber-400 text-lg">{formatEuro(bdsComputedData.total)}</div>
+                </div>
+              </div>
+              <div className="text-5xl sm:text-6xl font-black text-white">
+                {formatEuro(purchasePrice + upfrontCosts + bdsComputedData.total)}
+              </div>
+              <p className="text-xs text-slate-300/80 max-w-xl mx-auto mt-3">
+                Обща минимална инвестиция за легализирана къща с Акт 16 — готова за поетапно довършване.
               </p>
             </div>
           </div>
